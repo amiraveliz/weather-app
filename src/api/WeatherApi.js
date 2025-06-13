@@ -15,9 +15,8 @@ const WeatherApi = {
                     data.error || "Failed to fetch weather information"
                 );
             }
-
             return {
-                data: data.data,
+                data,
             };
         } catch (error) {
             return {
