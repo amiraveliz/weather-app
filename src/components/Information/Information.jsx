@@ -23,6 +23,7 @@ function Information({ weather }) {
                 <h3>
                     {name}, {country}
                 </h3>
+                {/* Here we can show °F or °C*/}
                 <p>{temp_c}°C</p>
 
                 <p>{condition.text}</p>

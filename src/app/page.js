@@ -14,6 +14,7 @@ export default function Home() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        // these state information can be separated and saved within a store like zustand or redux or a context provider
         setIsLoading(true);
         setError("");
         setWeather(null);
@@ -21,8 +22,11 @@ export default function Home() {
         const response = await WeatherApi.getWeatherByCity(city);
 
         if (response.error) {
+            // here we can customize the error message to show wether the api didn't find the location/city or the api failed
             setError(response.error);
         } else {
+            // we can save city/location weather in localstorage using a custom hook to save and read the data from localstorage
+            // we can load the data from localstorage in zustand for example
             setWeather(response.data);
         }
 
@@ -42,6 +46,8 @@ export default function Home() {
                     className="flex flex-col md:flex-row items-center gap-3 md:gap-2 py-8"
                 >
                     <div className="flex flex-col w-full md:w-[70%]">
+                        {/* input can be a reusable component with custom styles */}
+                        {/* we can show city/location suggestions when typing and use a custom hook useDebounce to look for city/location suggestions with debounced search 500ms */}
                         <input
                             type="text"
                             name="city"
@@ -54,6 +60,7 @@ export default function Home() {
                     </div>
 
                     <div className="flex flex-col w-full md:w-[30%]">
+                        {/* button can be a reusable component with custom styles */}
                         <button className="bg-primary-100 hover:bg-primary-100/90 border-primary-100 border-1 disabled:bg-gray-400/30 p-2 rounded-md text-white cursor-pointer text-xs md:text-[medium]">
                             {isLoading ? (
                                 <Loader
